@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.dicoding.livedatawithapi.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.isLoading.observe(this, {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        })
+
+        mainViewModel.snackbarText.observe(this, {
+            Snackbar.make(window.decorView.rootView, it, Snackbar.LENGTH_SHORT).show()
         })
 
         binding.btnSend.setOnClickListener { view ->
